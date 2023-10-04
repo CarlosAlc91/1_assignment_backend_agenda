@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize"
 import sequelize from "../config/database/database.js"
 
-const Repairs = sequelize.define("repair", {
+const Repair = sequelize.define("repair", {
   /* propiedades */
   id: {
     primaryKey: true,
@@ -22,4 +22,4 @@ const Repairs = sequelize.define("repair", {
   }
 })
 
-export default Repairs
+export default Repair
