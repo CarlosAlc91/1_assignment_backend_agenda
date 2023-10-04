@@ -27,10 +27,10 @@ export class UserService {
     return await user.update(data)
   }
 
-  async deleteUser() {
-    return await User.delete({
+  async deleteUser(user) {
+    return await user.delete({
       where: {
-        status: 'available'
+        status: 'disable'
       }
     })
   }
