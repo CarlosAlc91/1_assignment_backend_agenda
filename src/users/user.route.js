@@ -1,14 +1,21 @@
 import express from 'express'
+import {
+  createUser,
+  deleteUser,
+  findAllUsers,
+  findUserById,
+  updateUser
+} from './users.controller.js'
 
 export const router = express.Router()
 
 /* CRUD DEFINITION */
 router
   .route('/users')
-  .get()
-  .post()
+  .get(findAllUsers)
+  .post(createUser)
 router
   .route('/users/:id/')
-  .get()
-  .patch()
-  .delete()
+  .get(findUserById)
+  .patch(updateUser)
+  .delete(deleteUser)
