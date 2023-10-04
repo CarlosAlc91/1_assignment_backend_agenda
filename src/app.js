@@ -6,6 +6,6 @@ const app = express()
 
 /* middleware to read the body and receive it in json format */
 app.use(express.json())
-app.use('/api/v1', router)
+app.use('/api/v1/', router)
 
 export default app

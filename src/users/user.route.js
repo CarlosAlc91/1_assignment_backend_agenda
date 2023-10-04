@@ -11,7 +11,7 @@ export const router = express.Router()
 
 /* CRUD DEFINITION */
 router
-  .route('/users')
+  .route('/')
   .get(findAllUsers)
   .post(createUser)
 router
