@@ -23,6 +23,7 @@ export const createUser = async (req, res) => {
 export const findUserById = async (req, res) => {
   try {
     const { id } = req.params
+
     const user = await userService.findUserById(id)
     if (!user) {
       return res.status(404).json({
@@ -30,7 +31,7 @@ export const findUserById = async (req, res) => {
         message: `user with id ${id} not found`
       })
     }
-    return res.status(200).json(user)
+    res.status(200).json(user)
   } catch (error) {
     return res.status(500).json(error)
   }

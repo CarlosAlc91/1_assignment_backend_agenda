@@ -3,7 +3,7 @@ import User from "./users.model.js"
 /* CRUD methods */
 export class UserService {
   async findAllUsers() {
-    return await User.findOne({
+    return await User.findAll({
       where: {
         status: 'available'
       }
@@ -15,7 +15,7 @@ export class UserService {
   }
 
   async findUserById(id) {
-    return await User.findAll({
+    return await User.findOne({
       where: {
         id,
         status: 'available'
