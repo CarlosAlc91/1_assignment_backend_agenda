@@ -15,7 +15,7 @@ router
   .get(findAllUsers)
   .post(createUser)
 router
-  .route('/users/:id/')
+  .route('/:id/')
   .get(findUserById)
   .patch(updateUser)
   .delete(deleteUser)
