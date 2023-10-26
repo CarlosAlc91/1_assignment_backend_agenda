@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize"
 import sequelize from "../config/database/database.js"
-import User from "../users/users.model.js"
+
 
 const Repair = sequelize.define("repair", {
   /* propiedades */
@@ -22,7 +22,5 @@ const Repair = sequelize.define("repair", {
     allowNull: false
   }
 })
-
-Repair.belongsTo(User, { foreignKey: 'userId' })
 
 export default Repair

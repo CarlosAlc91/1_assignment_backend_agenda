@@ -1,4 +1,8 @@
 import { UserService } from "./users.service.js"
+import { catchAsync } from "../errors/catchAsync.js"
+import { validateRegister, validateLogin } from "./users.schema.js"
+import generateJWT from '../config/plugins/generate.jwt.js'
+
 
 const userService = new UserService()
 
@@ -10,6 +14,38 @@ export const findAllUsers = async (req, res) => {
     return res.status(500).json(error)
   }
 }
+
+export const registerUser = catchAsync(async (req, res, next) => {
+  const {
+    hasError,
+    errorMessages,
+    userData
+  } = validateRegister(req.body)
+
+  if (hasError) {
+    return res.status(422).json({
+      status: 'error',
+      message: errorMessages
+    })
+  }
+
+  const user = await userService.createUser(userData)
+
+  const token = await generateJWT(user.id)
+
+  return res.status(201).json({
+    token,
+    user: {
+      name: user.name,
+      email: user.email
+    },
+    user
+  })
+})
+
+export const loginUser = catchAsync(async (req, res, next) => {
+
+})
 
 export const createUser = async (req, res) => {
   try {

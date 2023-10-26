@@ -4,6 +4,7 @@ import {
   deleteUser,
   findAllUsers,
   findUserById,
+  loginUser,
   updateUser
 } from './users.controller.js'
 
@@ -14,6 +15,8 @@ router
   .route('/')
   .get(findAllUsers)
   .post(createUser)
+
+router.post('/login', loginUser)
 router
   .route('/:id/')
   .get(findUserById)

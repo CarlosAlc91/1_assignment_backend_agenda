@@ -1,4 +1,3 @@
-import User from "../users/users.model.js"
 import { RepairService } from "./repairs.service.js"
 
 const repairService = new RepairService()
