@@ -24,11 +24,11 @@ const User = sequelize.define('users', {
     allowNull: false
   },
   role: {
-    type: DataTypes.ENUM("client", "employee"),
+    type: DataTypes.ENUM("customer", "employee", "owner"),
     allowNull: false
   },
   status: {
-    type: DataTypes.ENUM("available", "disable"),
+    type: DataTypes.ENUM("available", "disable", "unavailable"),
     defaultValue: "available",
     allowNull: false
   }

@@ -1,10 +1,10 @@
-import express from 'express'
+import { Router } from 'express'
 import { router as userRouter } from './../users/user.route.js'
 import { router as repairsRouter } from './../repairs/repairs.route.js'
+import { protect } from '../users/users.middleware.js'
 
-/* all routes will be placed in here */
-
-export const router = express.Router()
+export const router = Router()
 
 router.use('/users', userRouter)
+router.use(protect)
 router.use('/repairs', repairsRouter)

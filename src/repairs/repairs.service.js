@@ -1,4 +1,5 @@
 import Repair from "./repairs.model.js"
+import User from '../users/users.model.js'
 
 
 export class RepairService {
@@ -22,14 +23,13 @@ export class RepairService {
     })
   }
   async updateRepair(repair, data) {
-    return await repair.update(data)
+    return await repair.update({
+      ...data,
+      status: 'completed'
+    })
 
   }
   async deleteRepair(repair) {
-    return await repair.delete({
-      where: {
-        status: 'cancelled'
-      }
-    })
+    return await repair.update({ status: 'cancelled' })
   }
 }

@@ -1,4 +1,4 @@
-import express from 'express'
+import { Router } from 'express'
 import {
   createUser,
   deleteUser,
@@ -7,18 +7,20 @@ import {
   loginUser,
   updateUser
 } from './users.controller.js'
+import { protect, restricTo, validateExistUser } from './users.middleware.js'
 
-export const router = express.Router()
+export const router = Router()
 
-/* CRUD DEFINITION */
 router
   .route('/')
   .get(findAllUsers)
-  .post(createUser)
+  .post(protect, restricTo('employee', 'owner'), createUser)
 
-router.post('/login', loginUser)
+router
+  .post('/login', loginUser)
+
 router
   .route('/:id/')
-  .get(findUserById)
-  .patch(updateUser)
-  .delete(deleteUser)
+  .get(validateExistUser, findUserById)
+  .patch(validateExistUser, protect, restricTo('owner'), updateUser)
+  .delete(validateExistUser, protect, restricTo('owner'), deleteUser)
